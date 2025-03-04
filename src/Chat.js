@@ -13,7 +13,7 @@ const Chat = () => {
 
         try {
             const response = await axios.post("https://magdi-backend.onrender.com/chat", {
-                message: input,
+                user_message: input,
             });
 
             const botMessage = { sender: "bot", text: response.data.response };
