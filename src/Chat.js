@@ -12,7 +12,7 @@ const Chat = () => {
         setMessages([...messages, userMessage]);
 
         try {
-            const response = await axios.post("https://magdi-backend.onrender.com/api/chat/magdi", {
+            const response = await axios.post("https://magdi-backend.onrender.com/chat", {
                 message: input,
             });
 
