@@ -16,7 +16,16 @@ const Chat = () => {
                 user_message: input,
             });
 
-            const botMessage = { sender: "bot", text: response.data.response?.value ?? "No response received" };
+            console.log("API Response:", response.data); // 🐛 Debugging log
+	    if (!response.data || !response.data.response) {
+            	throw new Error("Invalid response format");
+            }
+
+            const botMessage = { 
+            sender: "bot", 
+            text: response.data.response.value ?? "No response received" 
+           };
+
             setMessages([...messages, userMessage, botMessage]);
         } catch (error) {
             console.error("Error communicating with backend:", error);
