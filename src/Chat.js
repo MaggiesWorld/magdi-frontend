@@ -16,7 +16,7 @@ const Chat = () => {
                 user_message: input,
             });
 
-            const botMessage = { sender: "bot", text: response.data.response };
+            const botMessage = { sender: "bot", text: response.data.response?.value ?? "No response received" };
             setMessages([...messages, userMessage, botMessage]);
         } catch (error) {
             console.error("Error communicating with backend:", error);
