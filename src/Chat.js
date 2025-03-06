@@ -38,7 +38,7 @@ const Chat = () => {
 
         } catch (error) {
             console.error("Error communicating with backend:", error);
-            setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: "Error: Unable to 		get response from MagDi." }]);
+            setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: "Error: Unable to get response from MagDi." }]);
         }
 
         setInput("");
