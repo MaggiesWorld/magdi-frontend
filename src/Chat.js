@@ -19,9 +19,12 @@ const Chat = () => {
         setMessages((prevMessages) => [...prevMessages, userMessage]);
 
         try {
-            const response = await axios.post("https://magdi-backend.onrender.com/chat", {
-                user_message: input,
-            });
+            const response = await axios.post(
+    		"https://magdi-backend.onrender.com/chat",
+    		{ user_message: input },
+    		{ headers: { "X-API-Key": process.env.REACT_APP_API_KEY } }  // Fix: Include API Key
+	    );
+	
 
            if (!response.data || !response.data.response || !response.data.response.value) {
                 throw new Error("Invalid response format from backend");
