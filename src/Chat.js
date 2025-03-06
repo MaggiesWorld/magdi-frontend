@@ -21,8 +21,7 @@ const Chat = () => {
         try {
             const response = await axios.post(
     		"https://magdi-backend.onrender.com/chat",
-    		{ user_message: input },
-    		{ headers: { "X-API-Key": process.env.REACT_APP_API_KEY } }  // Fix: Include API Key
+    		{ user_message: input }
 	    );
 	
 
