@@ -8,9 +8,11 @@ const Chat = () => {
     const chatContainerRef = useRef(null); // For auto-scrolling
 
     useEffect(() => {
-        // Auto-scroll to the bottom when a new message is added
-        chatContainerRef.current?.scrollIntoView({ behavior: "smooth" });
+    	if (chatContainerRef.current) {
+        	chatContainerRef.current.scrollIntoView({ behavior: "smooth" });
+    	}
     }, [messages]);
+
 
     const sendMessage = async () => {
         if (!input.trim()) return;
