@@ -19,17 +19,9 @@ const Chat = () => {
         setMessages((prevMessages) => [...prevMessages, userMessage]);
 
         try {
-
-       	    console.log("Sending request with headers:", {
-            	"X-API-Key": process.env.X-API-Key, // Replace with secure method if needed
-            	"Content-Type": "application/json"
-            });
-
             const response = await axios.post(
     		"https://magdi-backend.onrender.com/chat",
-    		{ user_message: input },
-            	{ headers: { "X-API-Key": process.env.X-API-Key, "Content-Type": "application/json" } }
-	
+    		{ user_message: input }
 	    );
 	
 
