@@ -21,14 +21,14 @@ const Chat = () => {
         try {
 
        	    console.log("Sending request with headers:", {
-            	"X-API-Key": process.env.X_API_Key, // Replace with secure method if needed
+            	"X-API-Key": process.env.X-API-Key, // Replace with secure method if needed
             	"Content-Type": "application/json"
             });
 
             const response = await axios.post(
     		"https://magdi-backend.onrender.com/chat",
     		{ user_message: input },
-            	{ headers: { "X-API-Key": process.env.X_API_Key, "Content-Type": "application/json" } }
+            	{ headers: { "X-API-Key": process.env.X-API-Key, "Content-Type": "application/json" } }
 	
 	    );
 	
