@@ -27,7 +27,7 @@ const Chat = () => {
      	    });
 
             const response = await axios.post(
-    		"https://magdi-backend.onrender.com/chat",
+    		"https://magdi-proxy.onrender.com/chat",
     		{ user_message: input },
             	{ headers: { "X_API_KEY": process.env.X_API_KEY, "Content-Type": "application/json" } }
 	    );
