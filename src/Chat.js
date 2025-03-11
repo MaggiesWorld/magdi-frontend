@@ -21,20 +21,17 @@ const Chat = () => {
 
         try {
 
-    	    console.log("Sending request with headers:", {
-           	"X_API_KEY": process.env.REACT_APP_X_API_KEY, // Replace with secure method if needed
-            	"Content-Type": "application/json"
-     	    });
+    	    console.log("Sending request to proxy...");
 
             const response = await axios.post(
-    		"https://magdi-proxy.onrender.com/chat",
+    		"https://magdi-proxy.onrender.com/api/chat",
     		{ user_message: input },
             	{ headers: { 
-                	"X_API_KEY": process.env.REACT_APP_X_API_KEY, 
                 	"Content-Type": "application/json" 
             	} }
 	    );
-	
+
+           console.log("Proxy Response:", response.data);
 
            if (!response.data || !response.data.response || !response.data.response.value) {
                 throw new Error("Invalid response format from backend");
@@ -48,7 +45,7 @@ const Chat = () => {
            setMessages((prevMessages) => [...prevMessages, botMessage]);
 
         } catch (error) {
-            console.error("Error communicating with backend:", error);
+            console.error("Error communicating with proxy:", error);
             setMessages((prevMessages) => [...prevMessages, { sender: "bot", text: "Error: Unable to get response from MagDi." }]);
         }
 
