@@ -93,9 +93,9 @@ const Chat = () => {
 
            console.log("Proxy Response:", response.data);
 
-           if (!response.data || !response.data.response || !response.data.response.value) {
-                throw new Error("Invalid response format from backend");
-            }
+           if (!response.data || response.data.error) {
+    		throw new Error(response.data?.error || "Invalid response format from backend");
+	   }
 
             const botMessage = { 
             sender: "bot", 
@@ -143,7 +143,7 @@ const Chat = () => {
                 </button>
             </div>
 
-            {/* ✅ User Input for Chat */}
+            {/* User Input for Chat */}
             <div className="input-container">
                 <input
                     type="text"
