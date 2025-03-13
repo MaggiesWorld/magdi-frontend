@@ -41,28 +41,29 @@ const Chat = () => {
       None
    */ 
 
-    const uploadFile = async () => {
-        if (!file) {
-            alert("Please select a file to upload.");
-            return;
-        }
+   const uploadFile = async () => {
+    if (!file) {
+        alert("Please select a file to upload.");
+        return;
+    }
 
-        const formData = new FormData();
-        formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-        try {
-            const response = await axios.post(
-                "https://magdi-backend.onrender.com/upload_document",
-                formData,
-                { headers: { "X-API-Key": process.env.REACT_APP_X_API_KEY } }
-            );
+    try {
+        const response = await axios.post(
+            "https://magdi-proxy.onrender.com/api/upload_document",  // ✅ Use proxy URL
+            formData,
+            { headers: { "Content-Type": "multipart/form-data" } }  // ✅ Remove API Key
+        );
 
-            alert(response.data.message || "File uploaded successfully!");
-        } catch (error) {
-            console.error("Error uploading file:", error);
-            alert("File upload failed.");
-        }
-    };
+        alert(response.data.message || "File uploaded successfully!");
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        alert("File upload failed.");
+    }
+};
+
 
 
     // Description:
