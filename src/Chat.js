@@ -64,14 +64,14 @@ const Chat = () => {
     }
 };
 
-
-
     // Description:
     // Sends the user's message to the Assistant
     // Inputs:
     // None
     // Return:
     // None
+
+    const [threadId, setThreadId] = useState(localStorage.getItem("thread_id") || null); // Persist thread ID
 
     const sendMessage = async () => {
         if (!input.trim()) return;
@@ -85,7 +85,7 @@ const Chat = () => {
 
             const response = await axios.post(
     		"https://magdi-proxy.onrender.com/api/chat",
-    		{ user_message: input },
+    		{ user_message: input, thread_id: threadId },
             	{ headers: { 
                 	"Content-Type": "application/json" 
             	} }
@@ -96,6 +96,11 @@ const Chat = () => {
            if (!response.data || response.data.error) {
     		throw new Error(response.data?.error || "Invalid response format from backend");
 	   }
+
+            if (response.data.thread_id) {
+                setThreadId(response.data.thread_id);
+                localStorage.setItem("thread_id", response.data.thread_id); // Store in localStorage
+            }
 
             const botMessage = { 
             sender: "bot", 
